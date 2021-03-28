@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "278919702064",
+    "project_id": "wellbeeing-d8c42",
+    "storage_bucket": "wellbeeing-d8c42.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:278919702064:android:fcb86d2a2706dd471ceff5",
+        "android_client_info": {
+          "package_name": "com.darkcarbon.wellbeeing"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "278919702064-3bt76cgg4ium6nt8hkm4hr9kmpe7guqk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCfgV80-DgsZEkqcLMbETfhMgChk0taPPM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "278919702064-3bt76cgg4ium6nt8hkm4hr9kmpe7guqk.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

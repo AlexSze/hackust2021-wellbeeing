@@ -78,6 +78,17 @@ class _TextBubbleState extends State<TextBubble> {
           fontWeight: FontWeight.w500,
           color: Theme.of(context).hintColor,
         ),
+        // prefixIcon: Padding(
+        //   padding: EdgeInsets.all(15),
+        //   child: Text(
+        //     '+852 ',
+        //     style: TextStyle(
+        //       fontSize: 17.0,
+        //       fontWeight: FontWeight.w500,
+        //       color: Color.fromRGBO(17, 17, 17, 1),
+        //     ),
+        //   ),
+        // ),
         prefix: this.widget.prefix ? Text('+852 ') : Text(''),
         prefixStyle: TextStyle(
           fontSize: 17.0,

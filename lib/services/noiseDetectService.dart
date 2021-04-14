@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:math';
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
@@ -91,29 +92,83 @@ class _NoiseDetectViewState extends State<NoiseDetectView> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Text(
-          _isRecording
-              ? 'Abnormality: ${noiseValue.toStringAsFixed(1)}'
-              : 'None',
-          style: TextStyle(
-              color: !_isRecording || isAbnormal ? Colors.red : Colors.green,
-              fontSize: 30),
+    return CustomPaint(
+      child: ClipOval(
+        child: Stack(
+          children: [
+            Image.asset(
+              'assets/Well-BEEing_icon_round_1024.png',
+              semanticLabel: 'noise detector',
+              color: !_isRecording ? Colors.grey : null,
+              colorBlendMode: BlendMode.saturation,
+            ),
+
+            // slash effect for tapping
+            Positioned.fill(
+                child: new Material(
+                    color: Colors.transparent,
+                    child: new InkWell(
+                      splashColor: !_isRecording
+                          ? Theme.of(context).accentColor
+                          : Colors.grey,
+                      onTap: () async {
+                        if (!_isRecording) {
+                          await start();
+                        } else {
+                          await stop();
+                        }
+                      },
+                    ))),
+          ],
         ),
-        FlatButton(
-          onPressed: () async {
-            if (!_isRecording) {
-              await start();
-            } else {
-              await stop();
-            }
-          },
-          child: Text(_isRecording ? 'Detecting...' : 'Start Detection'),
-          color: _isRecording ? Colors.green : Colors.red,
-        )
-      ],
+      ),
+      foregroundPainter: CircleLinePainter(
+          strokeColor: _isRecording && isAbnormal ? Colors.red : Colors.white),
+      painter:
+          _isRecording ? CircleBackgroundPainter(noiseVal: noiseValue) : null,
     );
   }
+}
+
+// white / red circle outline inside icon
+class CircleLinePainter extends CustomPainter {
+  final Color strokeColor;
+  CircleLinePainter({this.strokeColor});
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    var paint1 = Paint()
+      ..color = strokeColor
+      ..style = PaintingStyle.stroke
+      ..strokeWidth = size.shortestSide * 0.03;
+
+    canvas.drawCircle(Offset(size.width / 2, size.height / 2),
+        size.shortestSide * 0.45, paint1);
+  }
+
+  @override
+  bool shouldRepaint(CustomPainter oldDelegate) => true;
+}
+
+// splash effect for noise
+class CircleBackgroundPainter extends CustomPainter {
+  final double noiseVal;
+  CircleBackgroundPainter({this.noiseVal});
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    var paint1 = Paint()
+      ..color = Colors.grey
+      ..style = PaintingStyle.fill;
+
+    double factor = log(noiseVal / 90 + 1);
+    const double maxRadius = 1.3; // 1: child's circle
+    print('factor: $factor');
+
+    canvas.drawCircle(Offset(size.width / 2, size.height / 2),
+        size.shortestSide * maxRadius * factor, paint1);
+  }
+
+  @override
+  bool shouldRepaint(CustomPainter oldDelegate) => true;
 }

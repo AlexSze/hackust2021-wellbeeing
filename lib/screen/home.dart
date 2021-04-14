@@ -11,18 +11,23 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: SafeArea(
-      child: Column(
-        children: [
-          NoiseDetectView(),
-          RaisedButton(
-            child: Text('Signout'),
-            onPressed: () {
-              DataBaseAuth().signOut();
-            },
+      body: SafeArea(
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              NoiseDetectView(),
+              RaisedButton(
+                child: Text('Signout'),
+                onPressed: () {
+                  DataBaseAuth().signOut();
+                },
+              ),
+            ],
           ),
-        ],
+        ),
       ),
-    ));
+      backgroundColor: Theme.of(context).backgroundColor,
+    );
   }
 }

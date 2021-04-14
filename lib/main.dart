@@ -22,6 +22,7 @@ class MyApp extends StatelessWidget {
         canvasColor: Colors.white,
         dialogBackgroundColor: Color.fromRGBO(250, 250, 250, 1),
         hintColor: Color.fromRGBO(172, 172, 172, 1),
+        backgroundColor: Color.fromRGBO(250, 247, 235, 1),
         textTheme: ThemeData.light().textTheme.copyWith(
               headline1: TextStyle(
                 color: Color.fromRGBO(17, 17, 17, 1), //30

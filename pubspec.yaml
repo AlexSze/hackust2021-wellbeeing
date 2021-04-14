@@ -30,6 +30,14 @@ dependencies:
 
   permission_handler: ^5.0.0
   noise_meter: ^2.0.0
+  flutter_launcher_icons: ^0.7.3
+
+flutter_icons:
+  image_path: "assets/Well-BEEing_icon_64.png"
+  adaptive_icon_foreground: "assets/Well-BEEing_icon_64.png"
+  adaptive_icon_background: "#F7941D"
+  android: true
+  ios: true
 
 dev_dependencies:
   flutter_test:

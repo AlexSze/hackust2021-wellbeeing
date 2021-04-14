@@ -28,6 +28,9 @@ dependencies:
   firebase_core: ^0.5.0
   firebase_auth: ^0.18.3+1
 
+  permission_handler: ^5.0.0
+  noise_meter: ^2.0.0
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

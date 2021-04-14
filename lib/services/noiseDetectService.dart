@@ -25,7 +25,7 @@ class _NoiseDetectViewState extends State<NoiseDetectView> {
       this._isRecording = true;
     }
     onData(noiseReading.meanDecibel);
-    print(noiseReading.toString());
+    // print(noiseReading.toString());
   }
 
   void _onError(PlatformException e) {
@@ -35,9 +35,11 @@ class _NoiseDetectViewState extends State<NoiseDetectView> {
 
   Future start() async {
     try {
-      print('start');
+      print('start detection');
       await getPermission();
-      _noiseSubscription = _noiseMeter.noiseStream.listen(_onData);
+      if (_noiseSubscription == null) {
+        _noiseSubscription = _noiseMeter.noiseStream.listen(_onData);
+      }
     } catch (err) {
       print(err);
     }
@@ -45,6 +47,7 @@ class _NoiseDetectViewState extends State<NoiseDetectView> {
 
   Future stop() async {
     try {
+      print('stop detection');
       if (_noiseSubscription != null) {
         _noiseSubscription.cancel();
         _noiseSubscription = null;
@@ -113,13 +116,7 @@ class _NoiseDetectViewState extends State<NoiseDetectView> {
                         splashColor: !_isRecording
                             ? Theme.of(context).accentColor
                             : Colors.grey,
-                        onTap: () async {
-                          if (!_isRecording) {
-                            await start();
-                          } else {
-                            await stop();
-                          }
-                        },
+                        onTap: !_isRecording ? start : stop,
                       ))),
             ],
           ),
@@ -167,7 +164,6 @@ class CircleBackgroundPainter extends CustomPainter {
 
     double factor = log(noiseVal / 90 + 1);
     const double maxRadius = 1.3; // 1: child's circle
-    print('factor: $factor');
 
     canvas.drawCircle(Offset(size.width / 2, size.height / 2),
         size.shortestSide * maxRadius * factor, paint1);

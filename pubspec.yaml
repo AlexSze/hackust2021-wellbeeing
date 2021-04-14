@@ -32,6 +32,7 @@ dependencies:
   noise_meter: ^2.0.0
   flutter_launcher_icons: ^0.7.3
 
+# flutter pub run flutter_launcher_icons:main
 flutter_icons:
   image_path: "assets/Well-BEEing_icon_512.png"
   adaptive_icon_foreground: "assets/Well-BEEing_rounded_app_icon.png"

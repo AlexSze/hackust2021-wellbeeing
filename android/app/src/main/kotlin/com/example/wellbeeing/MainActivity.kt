@@ -1,4 +1,4 @@
-package com.example.wellbeeing
+package com.darkcarbon.wellbeeing
 
 import io.flutter.embedding.android.FlutterActivity
 

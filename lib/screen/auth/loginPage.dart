@@ -50,7 +50,7 @@ class _LoginPageState extends State<LoginPage> {
                 children: <Widget>[
                   SizedBox(height: defaultSize * 13),
                   Image.asset(
-                    'assets/Well-BEEing_icon_64.png',
+                    'assets/Well-BEEing_icon_round_1024',
                     height: 44.0,
                     width: 44.0,
                   ),

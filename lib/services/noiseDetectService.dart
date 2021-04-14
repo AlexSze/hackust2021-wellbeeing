@@ -158,15 +158,19 @@ class CircleBackgroundPainter extends CustomPainter {
 
   @override
   void paint(Canvas canvas, Size size) {
-    var paint1 = Paint()
-      ..color = Colors.grey
+    const double extraRadius = 0.7; // 1: child's circle's radius
+    const double maxVal = 90, minVal = 40; // minVal: smallest circle, maxVal: biggest circle
+
+    double factor = max(min(log(max(noiseVal, minVal) - minVal) / log(maxVal - minVal), 1), 0);
+
+    print('noiseVal: $noiseVal \t factor: $factor');
+    Paint paint1 = Paint()
+      ..color = Colors.grey.withOpacity(factor)
       ..style = PaintingStyle.fill;
 
-    double factor = log(noiseVal / 90 + 1);
-    const double maxRadius = 1.3; // 1: child's circle
 
     canvas.drawCircle(Offset(size.width / 2, size.height / 2),
-        size.shortestSide * maxRadius * factor, paint1);
+        size.shortestSide / 2 * extraRadius * (factor + 1), paint1);
   }
 
   @override

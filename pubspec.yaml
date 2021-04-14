@@ -34,6 +34,8 @@ dependencies:
 
 flutter_icons:
   image_path: "assets/Well-BEEing_icon_64.png"
+  adaptive_icon_foreground: "assets/Well-BEEing_icon_64.png"
+  adaptive_icon_background: "#F7941D"
   android: true
   ios: true
 

@@ -91,31 +91,29 @@ class _NoiseDetectViewState extends State<NoiseDetectView> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-          Text(
-            _isRecording
-                ? 'Abnormality: ${noiseValue.toStringAsFixed(1)}'
-                : 'None',
-            style: TextStyle(
-                color: !_isRecording || isAbnormal ? Colors.red : Colors.green,
-                fontSize: 30),
-          ),
-          FlatButton(
-            onPressed: () async {
-              if (!_isRecording) {
-                await start();
-              } else {
-                await stop();
-              }
-            },
-            child: Text(_isRecording ? 'Detecting...' : 'Start Detection'),
-            color: _isRecording ? Colors.green : Colors.red,
-          )
-        ]),
-      ));
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Text(
+          _isRecording
+              ? 'Abnormality: ${noiseValue.toStringAsFixed(1)}'
+              : 'None',
+          style: TextStyle(
+              color: !_isRecording || isAbnormal ? Colors.red : Colors.green,
+              fontSize: 30),
+        ),
+        FlatButton(
+          onPressed: () async {
+            if (!_isRecording) {
+              await start();
+            } else {
+              await stop();
+            }
+          },
+          child: Text(_isRecording ? 'Detecting...' : 'Start Detection'),
+          color: _isRecording ? Colors.green : Colors.red,
+        )
+      ],
+    );
   }
 }

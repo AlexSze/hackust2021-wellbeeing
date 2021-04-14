@@ -38,66 +38,92 @@ class _LoginPageState extends State<LoginPage> {
                 _isLoading = false;
               },
             ),
-      body: Form(
-          key: formKey,
-          child: Padding(
-            padding: const EdgeInsets.only(left: 25.0, right: 25.0),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                SizedBox(height: defaultSize * 13),
-                Image.asset(
-                  'assets/Well-BEEing_icon_64.png',
-                  height: 44.0,
-                  width: 44.0,
-                ),
-                Text(
-                  'Login',
-                  style: Theme.of(context).textTheme.headline1,
-                ),
-                SizedBox(height: defaultSize * 13),
-                Text('Please enter your phone number'),
-                SizedBox(height: 20.0),
-                TextBubble(
-                  1,
-                  '',
-                  '1234 8888',
-                  (value) {
-                    if (value.length < 8) {
-                      return 'Please enter a valid phone number';
-                    }
-                    return null;
-                  },
-                  (val) {
-                    setState(() {
-                      this.phoneNo = '+852' + val;
-                    });
-                  },
-                  false,
-                ),
-                SizedBox(height: 50.0),
-                codeSent ? Text('Please enter the OTP code') : Container(),
-                SizedBox(height: 20.0),
-                codeSent
-                    ? TextBubble(
-                        1,
-                        '',
-                        '123456',
-                        (value) {
-                          return null;
-                        },
-                        (val) {
-                          setState(() {
-                            this.smsCode = val;
-                          });
-                        },
-                        false,
-                      )
-                    : Container(),
-              ],
-            ),
-          )),
+      body: SingleChildScrollView(
+        physics: AlwaysScrollableScrollPhysics(),
+        child: Form(
+            key: formKey,
+            child: Padding(
+              padding: const EdgeInsets.only(left: 25.0, right: 25.0),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  SizedBox(height: defaultSize * 13),
+                  Image.asset(
+                    'assets/Well-BEEing_icon_64.png',
+                    height: 44.0,
+                    width: 44.0,
+                  ),
+                  SizedBox(height: 20.0),
+                  Text(
+                    'Silver-Age',
+                    style: TextStyle(
+                      fontSize: 20,
+                      color: Theme.of(context).accentColor,
+                      fontWeight: FontWeight.w700,
+                    ),
+                  ),
+                  Text(
+                    'Sign In',
+                    style: TextStyle(
+                      fontSize: 32,
+                      color: Theme.of(context).accentColor,
+                      fontWeight: FontWeight.w700,
+                    ),
+                  ),
+                  SizedBox(height: defaultSize * 7),
+                  Text(
+                    'Please enter your phone number',
+                    style: Theme.of(context).textTheme.bodyText1,
+                  ),
+                  SizedBox(height: 20.0),
+                  TextBubble(
+                    1,
+                    '',
+                    '1234 8888',
+                    (value) {
+                      if (value.length < 8) {
+                        return 'Please enter a valid phone number';
+                      }
+                      return null;
+                    },
+                    (val) {
+                      setState(() {
+                        this.phoneNo = '+852' + val;
+                      });
+                    },
+                    false,
+                    prefix: true,
+                  ),
+                  SizedBox(height: 50.0),
+                  codeSent
+                      ? Text(
+                          'Please enter the OTP code',
+                          style: Theme.of(context).textTheme.bodyText1,
+                        )
+                      : Container(),
+                  SizedBox(height: 20.0),
+                  codeSent
+                      ? TextBubble(
+                          1,
+                          '',
+                          '123456',
+                          (value) {
+                            return null;
+                          },
+                          (val) {
+                            setState(() {
+                              this.smsCode = val;
+                            });
+                          },
+                          true,
+                        )
+                      : Container(),
+                  SizedBox(height: defaultSize * 13),
+                ],
+              ),
+            )),
+      ),
     );
   }
 

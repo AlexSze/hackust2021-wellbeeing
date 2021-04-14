@@ -10,6 +10,7 @@ class TextBubble extends StatefulWidget {
   final bool focus;
   final TextInputType textInputType;
   final String allowCharacters;
+  final bool prefix;
 
   TextBubble(
     this.maxline,
@@ -20,6 +21,7 @@ class TextBubble extends StatefulWidget {
     this.focus, {
     this.textInputType = TextInputType.text,
     this.allowCharacters = ".",
+    this.prefix = false,
   });
 
   @override
@@ -75,6 +77,12 @@ class _TextBubbleState extends State<TextBubble> {
           fontSize: 17.0,
           fontWeight: FontWeight.w500,
           color: Theme.of(context).hintColor,
+        ),
+        prefix: this.widget.prefix ? Text('+852 ') : Text(''),
+        prefixStyle: TextStyle(
+          fontSize: 17.0,
+          fontWeight: FontWeight.w500,
+          color: Color.fromRGBO(17, 17, 17, 1),
         ),
       ),
       onChanged: this.widget.action,

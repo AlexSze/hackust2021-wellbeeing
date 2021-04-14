@@ -16,10 +16,10 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
-        accentColor: Colors.blue,
-        primaryColorLight: Color(0xFFFEF7F8),
+        accentColor: Color.fromRGBO(246, 137, 17, 1),
+        primaryColorLight: Color.fromRGBO(243, 113, 1, 1),
         canvasColor: Colors.white,
-        dialogBackgroundColor: Colors.grey,
+        dialogBackgroundColor: Color.fromRGBO(250, 250, 250, 1),
         hintColor: Color.fromRGBO(172, 172, 172, 1),
         textTheme: ThemeData.light().textTheme.copyWith(
               headline1: TextStyle(

@@ -80,7 +80,7 @@ class _LoginPageState extends State<LoginPage> {
                   TextBubble(
                     1,
                     '',
-                    '1234 8888',
+                    '8888 8888',
                     (value) {
                       if (value.length < 8) {
                         return 'Please enter a valid phone number';

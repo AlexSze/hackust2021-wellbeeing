@@ -92,40 +92,44 @@ class _NoiseDetectViewState extends State<NoiseDetectView> {
 
   @override
   Widget build(BuildContext context) {
-    return CustomPaint(
-      child: ClipOval(
-        child: Stack(
-          children: [
-            Image.asset(
-              'assets/Well-BEEing_icon_round_1024.png',
-              semanticLabel: 'noise detector',
-              color: !_isRecording ? Colors.grey : null,
-              colorBlendMode: BlendMode.saturation,
-            ),
+    return Padding(
+      padding: const EdgeInsets.all(17.0),
+      child: CustomPaint(
+        child: ClipOval(
+          child: Stack(
+            children: [
+              Image.asset(
+                'assets/Well-BEEing_icon_round_1024.png',
+                semanticLabel: 'noise detector',
+                color: !_isRecording ? Colors.grey : null,
+                colorBlendMode: BlendMode.saturation,
+              ),
 
-            // slash effect for tapping
-            Positioned.fill(
-                child: new Material(
-                    color: Colors.transparent,
-                    child: new InkWell(
-                      splashColor: !_isRecording
-                          ? Theme.of(context).accentColor
-                          : Colors.grey,
-                      onTap: () async {
-                        if (!_isRecording) {
-                          await start();
-                        } else {
-                          await stop();
-                        }
-                      },
-                    ))),
-          ],
+              // slash effect for tapping
+              Positioned.fill(
+                  child: new Material(
+                      color: Colors.transparent,
+                      child: new InkWell(
+                        splashColor: !_isRecording
+                            ? Theme.of(context).accentColor
+                            : Colors.grey,
+                        onTap: () async {
+                          if (!_isRecording) {
+                            await start();
+                          } else {
+                            await stop();
+                          }
+                        },
+                      ))),
+            ],
+          ),
         ),
+        foregroundPainter: CircleLinePainter(
+            strokeColor:
+                _isRecording && isAbnormal ? Colors.red : Colors.white),
+        painter:
+            _isRecording ? CircleBackgroundPainter(noiseVal: noiseValue) : null,
       ),
-      foregroundPainter: CircleLinePainter(
-          strokeColor: _isRecording && isAbnormal ? Colors.red : Colors.white),
-      painter:
-          _isRecording ? CircleBackgroundPainter(noiseVal: noiseValue) : null,
     );
   }
 }

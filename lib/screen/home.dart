@@ -32,12 +32,6 @@ class _HomeState extends State<Home> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               NoiseDetectView(),
-              // RaisedButton(
-              //   child: Text('Signout'),
-              //   onPressed: () {
-              //     DataBaseAuth().signOut();
-              //   },
-              // ),
             ],
           ),
         ),

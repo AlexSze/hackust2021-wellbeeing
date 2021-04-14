@@ -81,19 +81,22 @@ class _LoginPageState extends State<LoginPage> {
                     1,
                     '',
                     '8888 8888',
-                    (value) {
-                      if (value.length < 8) {
+                    (String value) {
+                      print('val length: ${value.length}');
+                      if (value.length != 8) {
                         return 'Please enter a valid phone number';
                       }
                       return null;
                     },
-                    (val) {
+                    (String val) {
                       setState(() {
                         this.phoneNo = '+852' + val;
                       });
                     },
                     false,
                     prefix: true,
+                    textInputType: TextInputType.phone,
+                    allowCharacters: '[0-9]',
                   ),
                   SizedBox(height: 50.0),
                   codeSent
@@ -117,6 +120,8 @@ class _LoginPageState extends State<LoginPage> {
                             });
                           },
                           true,
+                          textInputType: TextInputType.number,
+                          allowCharacters: '[0-9]',
                         )
                       : Container(),
                   SizedBox(height: defaultSize * 13),

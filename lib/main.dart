@@ -16,6 +16,29 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
+        accentColor: Colors.blue,
+        primaryColorLight: Color(0xFFFEF7F8),
+        canvasColor: Colors.white,
+        dialogBackgroundColor: Colors.grey,
+        hintColor: Color.fromRGBO(172, 172, 172, 1),
+        textTheme: ThemeData.light().textTheme.copyWith(
+              headline1: TextStyle(
+                color: Color.fromRGBO(17, 17, 17, 1), //30
+                fontWeight: FontWeight.bold,
+                fontSize: 30,
+              ),
+              subtitle1: TextStyle(
+                color: Color.fromRGBO(134, 142, 150, 1), //30
+                fontWeight: FontWeight.normal,
+                fontSize: 17,
+              ),
+              bodyText1: TextStyle(
+                color: Color.fromRGBO(17, 17, 17, 1),
+              ),
+              bodyText2: TextStyle(
+                color: Color.fromRGBO(134, 142, 150, 1),
+              ),
+            ),
       ),
       home: AuthStateLogic(),
     );

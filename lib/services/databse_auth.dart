@@ -7,11 +7,11 @@ class DataBaseAuth {
   }
 
   //SignIn
-  signIn(AuthCredential authCreds) {
-    FirebaseAuth.instance.signInWithCredential(authCreds);
+  Future signIn(AuthCredential authCreds) async {
+      await FirebaseAuth.instance.signInWithCredential(authCreds).catchError((e) {});
   }
 
-  signInWithOTP(smsCode, verId) {
+  Future signInWithOTP(smsCode, verId) async {
     AuthCredential authCreds =
         PhoneAuthProvider.credential(verificationId: verId, smsCode: smsCode);
     signIn(authCreds);

@@ -14,6 +14,7 @@ class _LoginPageState extends State<LoginPage> {
   final formKey = new GlobalKey<FormState>();
   String phoneNo, verificationId, smsCode;
   bool codeSent = false;
+  String _errorMessage = '';
 
   @override
   Widget build(BuildContext context) {
@@ -31,10 +32,30 @@ class _LoginPageState extends State<LoginPage> {
               codeSent ? 'Login' : 'Verify',
               () async {
                 _isLoading = true;
-                codeSent
-                    ? await DataBaseAuth()
-                        .signInWithOTP(smsCode, verificationId)
-                    : await verifyPhone(phoneNo);
+                setState(() {
+                  _errorMessage = '';
+                });
+                try {
+                  if (formKey.currentState.validate()) {
+                    if (codeSent) {
+                      await DataBaseAuth()
+                          .signInWithOTP(smsCode, verificationId);
+                    } else {
+                      verifyPhone(phoneNo);
+                    }
+                  }
+                } on FirebaseAuthException catch (e) {
+                  print('Failed with error code: ${e.code}');
+                  print(e.message);
+                  setState(() {
+                    _errorMessage = e.message;
+                  });
+                } catch (e) {
+                  setState(() {
+                    _errorMessage = e.toString();
+                  });
+                }
+
                 _isLoading = false;
               },
             ),
@@ -82,7 +103,6 @@ class _LoginPageState extends State<LoginPage> {
                     '',
                     '8888 8888',
                     (String value) {
-                      print('val length: ${value.length}');
                       if (value.length != 8) {
                         return 'Please enter a valid phone number';
                       }
@@ -111,7 +131,10 @@ class _LoginPageState extends State<LoginPage> {
                           1,
                           '',
                           '123456',
-                          (value) {
+                          (String value) {
+                            if (value.length != 6) {
+                              return 'Please enter a valid OTP code';
+                            }
                             return null;
                           },
                           (val) {
@@ -125,6 +148,8 @@ class _LoginPageState extends State<LoginPage> {
                         )
                       : Container(),
                   SizedBox(height: defaultSize * 13),
+                  Text(_errorMessage,
+                      style: TextStyle(color: Theme.of(context).errorColor)),
                 ],
               ),
             )),

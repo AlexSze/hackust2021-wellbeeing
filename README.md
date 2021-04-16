@@ -5,6 +5,7 @@ Our team, Up To Data's submission to HackUST 2021
 This is an app which detects abnormal noise in surrounding. We detects if there is a spike in the surrounding noise.
 
 
+
 How to use:
 
 Open the app.

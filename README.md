@@ -2,6 +2,8 @@
 
 Our team, Up To Data's submission to HackUST 2021
 
+This is only the front-end part of our submission, please refer to https://github.com/AlexSze/hackust2021-wellbeeing-server for the server side
+
 This repositry is a Flutter app for elderly use. This is a demo app that the elderly could sign up and login with their phone numbers. It shows the functionality of abnormal surrounding sound detection. We detects if there is a spike in the surrounding noise.
 <br><br>
 ## How to use
